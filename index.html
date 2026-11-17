@@ -342,8 +342,18 @@
     }
 
     .module-card.off {
-      opacity: 0.7;
+      opacity: 0.82;
       background: #f6f7f6;
+      border-color: #d7ded9;
+    }
+
+    .module-card.off .module-title,
+    .module-card.off .module-scope,
+    .module-card.off .price {
+      color: #7a8580;
+      text-decoration-line: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: #b24b35;
     }
 
     .module-card:hover {
@@ -470,6 +480,46 @@
       background: #fff5e6;
       border-color: #f0cf9c;
       color: #8c4f14;
+    }
+
+    .module-choice {
+      display: grid;
+      justify-items: end;
+      gap: 7px;
+    }
+
+    .selection-state,
+    .table-status {
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .selection-state.chosen,
+    .table-status.chosen {
+      background: #e8f7ee;
+      color: var(--tein-dark);
+    }
+
+    .selection-state.not-chosen,
+    .table-status.not-chosen {
+      background: #fff0ed;
+      color: #9b3725;
+      border: 1px solid #efbcb1;
+    }
+
+    tr.row-off td:not(:last-child) {
+      color: #7a8580;
+      text-decoration-line: line-through;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: #b24b35;
     }
 
     .control-card,
@@ -1058,6 +1108,10 @@
       box-shadow: none;
     }
 
+    .print-bill {
+      display: none;
+    }
+
     .use-flow {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1288,11 +1342,104 @@
       }
 
       .topbar,
+      .wizard-intro,
+      .workspace,
       .footer-note,
       .toolbar,
       .switch,
       .control-card {
         display: none !important;
+      }
+
+      .print-bill {
+        display: block;
+        color: #14241a;
+      }
+
+      .print-bill-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 18px;
+        margin-bottom: 22px;
+        border-bottom: 3px solid #008c44;
+      }
+
+      .print-bill-brand {
+        margin: 0;
+        color: #004f29;
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .print-bill h1 {
+        margin: 6px 0 0;
+        font-size: 30px;
+        letter-spacing: -0.035em;
+      }
+
+      .print-bill-meta {
+        color: #526259;
+        font-size: 12px;
+        line-height: 1.6;
+        text-align: right;
+      }
+
+      .print-bill h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+
+      .print-bill table {
+        border: 1px solid #cfdad2;
+        border-radius: 0;
+      }
+
+      .print-bill th,
+      .print-bill td {
+        padding: 10px 11px;
+        border-bottom: 1px solid #dfe7e1;
+        font-size: 11px;
+      }
+
+      .print-bill th {
+        background: #eff6f1;
+      }
+
+      .print-bill-summary {
+        width: min(100%, 390px);
+        margin: 20px 0 0 auto;
+        border: 1px solid #bcd4c5;
+        border-radius: 10px;
+        padding: 12px 16px;
+      }
+
+      .print-bill-summary-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 7px 0;
+        border-bottom: 1px solid #e5ece7;
+        font-size: 12px;
+      }
+
+      .print-bill-summary-row.total {
+        margin-top: 7px;
+        padding-top: 12px;
+        border-top: 2px solid #008c44;
+        border-bottom: 0;
+        color: #004f29;
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .print-bill-note {
+        margin: 22px 0 0;
+        color: #526259;
+        font-size: 10px;
+        line-height: 1.5;
       }
 
       .hero,
@@ -1634,6 +1781,42 @@
       </aside>
     </main>
 
+    <section class="print-bill" aria-label="Selected commercial scope print summary">
+      <header class="print-bill-header">
+        <div>
+          <p class="print-bill-brand">COFY Platforms</p>
+          <h1>CoilStack Commercial Summary</h1>
+        </div>
+        <div class="print-bill-meta">
+          <div>Commercial scope — selected modules only</div>
+          <div>Date: 09 October 2026</div>
+          <div>GST extra as applicable</div>
+        </div>
+      </header>
+
+      <h2>Selected Module Line Items</h2>
+      <table aria-label="Selected module commercial line items">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Included Scope</th>
+            <th class="money">Implementation</th>
+            <th class="money">Monthly SaaS</th>
+          </tr>
+        </thead>
+        <tbody id="printBillRows"></tbody>
+      </table>
+
+      <section class="print-bill-summary" aria-label="Commercial totals">
+        <div class="print-bill-summary-row"><span>Selected modules</span><strong id="printSelectedCount">0</strong></div>
+        <div class="print-bill-summary-row"><span>Implementation subtotal</span><strong id="printImplementation">₹0</strong></div>
+        <div class="print-bill-summary-row"><span>Monthly SaaS</span><strong id="printMonthly">₹0</strong></div>
+        <div class="print-bill-summary-row"><span>Annual SaaS after discounts</span><strong id="printAnnual">₹0</strong></div>
+        <div class="print-bill-summary-row total"><span>First-year SaaS commercial</span><strong id="printFirstYear">₹0</strong></div>
+      </section>
+      <p class="print-bill-note">This summary includes only the modules selected in the calculator at the time of printing. Consumption charges and third-party platform costs remain separate unless expressly included in the final agreement.</p>
+    </section>
+
     <div class="footer-note">
       Client-owned account is needed for voice/telephony, payment gateway, messaging, emails, external AI/API consumption, Apple Developer Program and Google Play Console.
     </div>
@@ -1704,12 +1887,15 @@
     function renderModules() {
       byId("moduleGrid").innerHTML = modules.map((module) => {
         const isActive = !!state.selected[module.id];
-        const status = module.mandatory ? `<span class="pill locked">Locked</span>` : `
-          <label class="switch" aria-label="Toggle ${module.name}">
-            <input type="checkbox" data-module="${module.id}" ${isActive ? "checked" : ""} />
-            <span class="slider"></span>
-          </label>
-        `;
+        const status = module.mandatory
+          ? `<span class="pill locked">Core</span>`
+          : `<label class="switch" aria-label="Toggle ${module.name}">
+              <input type="checkbox" data-module="${module.id}" ${isActive ? "checked" : ""} />
+              <span class="slider"></span>
+            </label>`;
+        const selectionState = module.mandatory
+          ? `<span class="selection-state chosen">Included</span>`
+          : `<span class="selection-state ${isActive ? "chosen" : "not-chosen"}">${isActive ? "Chosen" : "Not chosen"}</span>`;
         return `
           <article class="module-card ${isActive ? "active" : "off"}">
             <div class="module-top">
@@ -1717,7 +1903,7 @@
                 <h4 class="module-title">${module.name}</h4>
                 <p class="module-scope">${module.scope}</p>
               </div>
-              ${status}
+              <div class="module-choice">${status}${selectionState}</div>
             </div>
             <div class="module-prices">
               <div><span class="price-label">Implementation</span><span class="price">${formatInr(module.implementation)}</span></div>
@@ -1741,16 +1927,33 @@
     function renderModuleTable() {
       byId("moduleTable").innerHTML = modules.map((module) => {
         const active = !!state.selected[module.id];
+        const status = module.mandatory ? "Included" : active ? "Chosen" : "Not chosen";
         return `
-          <tr>
+          <tr class="${active ? "" : "row-off"}">
             <td><strong>${module.name}</strong></td>
             <td>${module.scope}</td>
             <td class="money">${formatInr(module.implementation)}</td>
             <td class="money">${formatInr(module.monthly)}</td>
-            <td>${module.mandatory ? "Mandatory" : active ? "Included" : "Excluded"}</td>
+            <td><span class="table-status ${active ? "chosen" : "not-chosen"}">${status}</span></td>
           </tr>
         `;
       }).join("");
+    }
+
+    function renderPrintBill(t) {
+      byId("printBillRows").innerHTML = t.selectedModules.map((module) => `
+        <tr>
+          <td><strong>${module.name}</strong></td>
+          <td>${module.scope}</td>
+          <td class="money">${formatInr(discounted(module.implementation, t.implementationDiscount))}</td>
+          <td class="money">${formatInr(discounted(module.monthly, t.saasDiscount))}/month</td>
+        </tr>
+      `).join("");
+      setText("printSelectedCount", String(t.selectedModules.length));
+      setText("printImplementation", formatInr(t.implementation));
+      setText("printMonthly", `${formatInr(t.monthly)}/month`);
+      setText("printAnnual", formatInr(t.annualSaas));
+      setText("printFirstYear", formatInr(t.saasFirstYear));
     }
 
     function renderAmcTable() {
@@ -1785,6 +1988,9 @@
 
       return {
         selectedModules,
+        implementationDiscount,
+        saasDiscount,
+        annualDiscount,
         implementation,
         monthly,
         annualSaas,
@@ -1847,6 +2053,8 @@
       setText("sideAnnual", formatInr(t.annualSaas));
       setText("sideAmc", t.amcPlan.annual ? `${formatInr(t.amcPlan.annual)}/year` : "Not selected");
       setText("sideBuyout", formatInr(t.exclusiveWithAmc));
+
+      renderPrintBill(t);
     }
 
     function bindEvents() {
