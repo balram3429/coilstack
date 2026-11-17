@@ -847,6 +847,217 @@
       background: rgba(255, 255, 255, 0.18);
     }
 
+    /* Compact calculator wizard ------------------------------------------------ */
+    .wizard-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: end;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(223, 234, 226, 0.18);
+      border-radius: 20px;
+      background: rgba(4, 31, 17, 0.58);
+      color: #fff;
+    }
+
+    .wizard-intro h2 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .wizard-intro p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.45;
+    }
+
+    .wizard-steps {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .wizard-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .wizard-step b {
+      color: #8df0b7;
+    }
+
+    .workspace {
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 390px);
+      gap: 22px;
+    }
+
+    .side-stack {
+      order: 0;
+      grid-template-columns: 1fr;
+      position: sticky;
+      top: 18px;
+      max-height: calc(100vh - 36px);
+      overflow-y: auto;
+      padding-right: 3px;
+    }
+
+    .module-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .module-card {
+      padding: 13px;
+    }
+
+    .module-scope {
+      min-height: 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .pricing-dock {
+      overflow: hidden;
+      border: 1px solid rgba(100, 221, 147, 0.45);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #071e12, #0b3c23);
+      color: #fff;
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+    }
+
+    .pricing-dock-head {
+      padding: 16px 16px 12px;
+    }
+
+    .pricing-dock-kicker {
+      margin: 0 0 4px;
+      color: #8df0b7;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .pricing-dock h3 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .pricing-dock-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 5px;
+      padding: 6px;
+      margin: 0 12px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-dock-tab {
+      border: 0;
+      border-radius: 9px;
+      padding: 9px 5px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .pricing-dock-tab.active {
+      background: #fff;
+      color: var(--tein-dark);
+    }
+
+    .pricing-dock-panel {
+      display: none;
+      padding: 15px 16px 17px;
+    }
+
+    .pricing-dock-panel.active {
+      display: block;
+    }
+
+    .pricing-dock-panel p {
+      margin: 0 0 10px;
+      color: rgba(255, 255, 255, 0.69);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .pricing-dock .line-item {
+      color: rgba(255, 255, 255, 0.72);
+      border-color: rgba(255, 255, 255, 0.13);
+      font-size: 12px;
+    }
+
+    .pricing-dock .line-item strong {
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .pricing-dock .line-item.total {
+      border-top-color: #61e096;
+    }
+
+    .pricing-dock .line-item.total strong {
+      color: #8df0b7;
+      font-size: 24px;
+    }
+
+    .details-fold {
+      border: 1px solid rgba(223, 234, 226, 0.9);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .details-fold > summary {
+      padding: 16px 18px;
+      color: var(--coal);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 900;
+      list-style: none;
+    }
+
+    .details-fold > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .details-fold > summary:after {
+      content: "+";
+      float: right;
+      color: var(--tein);
+      font-size: 20px;
+      line-height: 0.8;
+    }
+
+    .details-fold[open] > summary:after {
+      content: "−";
+    }
+
+    .details-fold > .tabbed-pricing,
+    .details-fold > .table-card,
+    .details-fold > .scope-grid {
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
     .use-flow {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -887,9 +1098,33 @@
         grid-template-columns: 1fr;
       }
 
+      /* Flatten the desktop columns into the same intentional wizard order
+         on tablet and phone: modules, live price/terms, then optional detail. */
+      .workspace {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-stack {
+        display: contents;
+      }
+
+      .module-board {
+        order: 1;
+      }
+
+      .side-stack {
+        order: 2;
+      }
+
+      .details-fold {
+        order: 3;
+      }
+
       .side-stack {
         grid-template-columns: 1fr;
         position: static;
+        max-height: none;
       }
 
       .breakdown-grid {
@@ -995,6 +1230,23 @@
         text-align: left;
       }
 
+      .wizard-intro {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .wizard-steps {
+        justify-content: flex-start;
+      }
+
+      .pricing-dock-tabs {
+        margin: 0 10px;
+      }
+
+      .pricing-dock-tab {
+        font-size: 10px;
+      }
+
       .summary-grid,
       .module-grid,
       .control-grid,
@@ -1082,49 +1334,17 @@
       </div>
     </header>
 
-    <section class="hero">
-      <div class="hero-card">
-        <p class="eyebrow">Commercial Scope</p>
-        <h2>Pricing calculator for the CoilStack commercial scope.</h2>
-        <p class="hero-copy">
-          Use this page to switch modules on or off, select support and AMC, and view the updated SaaS,
-          source handover and exclusive-rights totals.
-        </p>
-        <div class="notice">
-          Core Commercial Stack remains mandatory. Client-owned account is needed for voice/telephony, payment gateway,
-          messaging, emails, external AI/API consumption, Apple Developer Program and Google Play Console.
-        </div>
+    <section class="wizard-intro" aria-label="Commercial calculator workflow">
+      <div>
+        <p class="eyebrow">Commercial Scope Calculator</p>
+        <h2>Choose the scope. The commercial view updates instantly.</h2>
+        <p>Start with modules, then set terms in the live pricing panel. Core Commercial Stack remains mandatory.</p>
       </div>
-
-      <div class="summary-grid" aria-label="Commercial summary">
-        <div class="summary-tile dark">
-          <p class="summary-label">SaaS First Year</p>
-          <p class="summary-value" id="heroSaasFirstYear">₹0</p>
-          <p class="summary-help">Implementation plus first-year SaaS for selected modules.</p>
-        </div>
-        <div class="summary-tile">
-          <p class="summary-label">Monthly SaaS</p>
-          <p class="summary-value" id="heroMonthly">₹0</p>
-          <p class="summary-help">Monthly subscription for active modules.</p>
-        </div>
-        <div class="summary-tile amc">
-          <p class="summary-label">AMC Selection</p>
-          <p class="summary-value" id="heroAmc">₹0</p>
-          <p class="summary-help" id="heroAmcLabel">No AMC selected.</p>
-        </div>
-        <div class="summary-tile">
-          <p class="summary-label">Handover With AMC</p>
-          <p class="summary-value" id="heroHandover">₹0</p>
-          <p class="summary-help">One-time handover total including selected first-year AMC.</p>
-        </div>
+      <div class="wizard-steps" aria-label="Calculator steps">
+        <span class="wizard-step"><b>1</b> Modules</span>
+        <span class="wizard-step"><b>2</b> Live price</span>
+        <span class="wizard-step"><b>3</b> Terms</span>
       </div>
-    </section>
-
-    <section class="use-flow" aria-label="How to use this calculator">
-      <div class="flow-step"><b>1</b><span>Select the modules in scope.</span></div>
-      <div class="flow-step"><b>2</b><span>Apply discounts and support options.</span></div>
-      <div class="flow-step"><b>3</b><span>Choose AMC for handover or buyout.</span></div>
-      <div class="flow-step"><b>4</b><span>Read SaaS, handover and exclusive totals.</span></div>
     </section>
 
     <main class="workspace">
@@ -1132,8 +1352,8 @@
         <section class="module-board">
           <div class="section-head">
             <div>
-              <h3>Module Scope And SaaS Pricing</h3>
-              <p>Switch optional modules on or off. The selected scope updates SaaS, handover and buyout totals.</p>
+              <h3>Step 1 — Select Modules</h3>
+              <p>Switch optional modules on or off. Your live commercial panel updates immediately.</p>
             </div>
             <div class="toolbar">
               <button class="ghost-btn" type="button" id="selectAll">Select all</button>
@@ -1143,7 +1363,9 @@
           <div class="module-grid" id="moduleGrid"></div>
         </section>
 
-        <section class="tabbed-pricing" aria-label="Commercial model costing">
+        <details class="details-fold">
+          <summary>View detailed commercial breakdown</summary>
+          <section class="tabbed-pricing" aria-label="Detailed commercial model costing">
           <div class="section-head">
             <div>
               <h3>Costing Breakdown</h3>
@@ -1264,9 +1486,12 @@
               </aside>
             </div>
           </div>
-        </section>
+          </section>
+        </details>
 
-        <section class="table-card">
+        <details class="details-fold">
+          <summary>View module-wise commercial ledger</summary>
+          <section class="table-card">
           <h3>Module-Wise Commercials</h3>
           <p class="card-note">The table below shows the full module price sheet. Active rows are included in the live totals.</p>
           <table aria-label="Module price sheet">
@@ -1281,9 +1506,12 @@
             </thead>
             <tbody id="moduleTable"></tbody>
           </table>
-        </section>
+          </section>
+        </details>
 
-        <section class="scope-grid">
+        <details class="details-fold">
+          <summary>View scope, inclusions and exclusions</summary>
+          <section class="scope-grid">
           <div class="scope-card">
             <h3>SaaS Includes</h3>
             <ul>
@@ -1318,13 +1546,46 @@
               <li>COFY Platforms retains generic frameworks, reusable libraries, AI/agent architecture, UI patterns, DevOps methods and non-client-specific know-how.</li>
             </ul>
           </div>
-        </section>
+          </section>
+        </details>
       </div>
 
       <aside class="side-stack" aria-label="Commercial controls">
+        <section class="pricing-dock" aria-label="Live commercial pricing">
+          <div class="pricing-dock-head">
+            <p class="pricing-dock-kicker">Step 2 — Live commercial</p>
+            <h3>Pricing as you select</h3>
+          </div>
+          <div class="pricing-dock-tabs" role="tablist" aria-label="Live commercial models">
+            <button class="pricing-dock-tab active" type="button" role="tab" aria-selected="true" data-dock-model="saas">SaaS</button>
+            <button class="pricing-dock-tab" type="button" role="tab" aria-selected="false" data-dock-model="handover">One-time</button>
+            <button class="pricing-dock-tab" type="button" role="tab" aria-selected="false" data-dock-model="exclusive">Buyout</button>
+          </div>
+          <div class="pricing-dock-panel active" data-dock-panel="saas" role="tabpanel">
+            <p>Hosted platform with implementation and recurring subscription.</p>
+            <div class="line-item"><span>Selected modules</span><strong id="dockSaasCount">0</strong></div>
+            <div class="line-item"><span>Implementation</span><strong id="dockSaasImplementation">₹0</strong></div>
+            <div class="line-item"><span>Monthly SaaS</span><strong id="dockSaasMonthly">₹0</strong></div>
+            <div class="line-item total"><span>First-year SaaS</span><strong id="dockSaasTotal">₹0</strong></div>
+          </div>
+          <div class="pricing-dock-panel" data-dock-panel="handover" role="tabpanel">
+            <p>One-time source handover with the chosen AMC plan.</p>
+            <div class="line-item"><span>Selected implementation</span><strong id="dockHandoverImplementation">₹0</strong></div>
+            <div class="line-item"><span>Handover and transition</span><strong id="dockHandoverBase">₹0</strong></div>
+            <div class="line-item"><span>Selected AMC</span><strong id="dockHandoverAmc">Not selected</strong></div>
+            <div class="line-item total"><span>One-time total</span><strong id="dockHandoverTotal">₹0</strong></div>
+          </div>
+          <div class="pricing-dock-panel" data-dock-panel="exclusive" role="tabpanel">
+            <p>Handover plus the selected exclusivity rights and AMC.</p>
+            <div class="line-item"><span>Handover base</span><strong id="dockExclusiveBase">₹0</strong></div>
+            <div class="line-item"><span>Selected rights</span><strong id="dockExclusiveRights">₹0</strong></div>
+            <div class="line-item"><span>Selected AMC</span><strong id="dockExclusiveAmc">Not selected</strong></div>
+            <div class="line-item total"><span>Buyout total</span><strong id="dockExclusiveTotal">₹0</strong></div>
+          </div>
+        </section>
         <section class="control-card">
-          <h3>Commercial Controls</h3>
-          <p class="card-note">Use these controls to prepare the customer-facing commercial snapshot.</p>
+          <h3>Step 3 — Commercial Terms</h3>
+          <p class="card-note">Adjust discounts, AMC and exclusivity before sharing the commercial snapshot.</p>
           <div class="control-grid">
             <div class="field">
               <label for="implementationDiscount">Implementation discount %</label>
@@ -1546,11 +1807,20 @@
     function recalc() {
       const t = totals();
 
-      setText("heroSaasFirstYear", formatInr(t.saasFirstYear));
-      setText("heroMonthly", `${formatInr(t.monthly)}/month`);
-      setText("heroAmc", t.amcPlan.annual ? `${formatInr(t.amcPlan.annual)}/year` : "Not selected");
-      setText("heroAmcLabel", t.amcPlan.annual ? t.amcPlan.name : "No AMC selected for handover or buyout.");
-      setText("heroHandover", formatInr(t.handoverWithAmc));
+      setText("dockSaasCount", String(t.selectedModules.length));
+      setText("dockSaasImplementation", formatInr(t.implementation));
+      setText("dockSaasMonthly", `${formatInr(t.monthly)}/month`);
+      setText("dockSaasTotal", formatInr(t.saasFirstYear));
+
+      setText("dockHandoverImplementation", formatInr(t.implementation));
+      setText("dockHandoverBase", formatInr(t.handoverBase));
+      setText("dockHandoverAmc", t.amcPlan.annual ? `${formatInr(t.amcPlan.annual)}/year` : "Not selected");
+      setText("dockHandoverTotal", formatInr(t.handoverWithAmc));
+
+      setText("dockExclusiveBase", formatInr(t.exclusiveBase));
+      setText("dockExclusiveRights", formatInr(t.exclusiveFee + t.industryExclusivity + t.geographicExclusivity));
+      setText("dockExclusiveAmc", t.amcPlan.annual ? `${formatInr(t.amcPlan.annual)}/year` : "Not selected");
+      setText("dockExclusiveTotal", formatInr(t.exclusiveWithAmc));
 
       setText("saasImplementation", formatInr(t.implementation));
       setText("saasMonthly", `${formatInr(t.monthly)}/month`);
@@ -1595,6 +1865,20 @@
           });
           document.querySelectorAll(".tab-panel").forEach((panel) => {
             panel.classList.toggle("active", panel.getAttribute("data-panel") === tab);
+          });
+        });
+      });
+
+      document.querySelectorAll(".pricing-dock-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          const model = button.getAttribute("data-dock-model");
+          document.querySelectorAll(".pricing-dock-tab").forEach((tabButton) => {
+            const isActive = tabButton === button;
+            tabButton.classList.toggle("active", isActive);
+            tabButton.setAttribute("aria-selected", String(isActive));
+          });
+          document.querySelectorAll(".pricing-dock-panel").forEach((panel) => {
+            panel.classList.toggle("active", panel.getAttribute("data-dock-panel") === model);
           });
         });
       });
