@@ -899,14 +899,89 @@
 
     @media (max-width: 780px) {
       .page-shell {
-        width: min(100vw - 24px, 1480px);
+        /* `min(100vw - 24px, …)` is not a valid CSS math expression in
+           every mobile browser. The ignored declaration left the desktop
+           width calculation in charge and allowed the introductory content
+           to overflow the viewport. */
+        width: calc(100% - 24px);
+        max-width: 1480px;
         padding-top: 16px;
+      }
+
+      /* Keep the commercial summary, flow and controls inside the phone
+         viewport before the module board begins. */
+      .topbar,
+      .brand,
+      .brand > div,
+      .hero,
+      .hero-card,
+      .summary-grid,
+      .summary-tile,
+      .use-flow,
+      .flow-step,
+      .workspace,
+      .main-stack,
+      .side-stack,
+      .control-card,
+      .module-board,
+      .tabbed-pricing,
+      .table-card,
+      .scope-card,
+      .section-head,
+      .toolbar,
+      .module-grid,
+      .breakdown-grid,
+      .included-box {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .main-stack,
+      .module-board,
+      .tabbed-pricing,
+      .table-card,
+      .scope-card {
+        width: 100%;
+      }
+
+      /* The five-column commercial ledger remains readable inside its own
+         swipeable region instead of widening the entire mobile page. */
+      .table-card {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .table-card table {
+        min-width: 670px;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand h1 {
+        font-size: clamp(23px, 7vw, 30px);
+        overflow-wrap: anywhere;
+      }
+
+      .brand p,
+      .hero-card h2,
+      .hero-copy,
+      .notice,
+      .summary-help,
+      .flow-step span {
+        overflow-wrap: anywhere;
       }
 
       .topbar,
       .section-head {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         text-align: left;
+      }
+
+      .toolbar {
+        width: auto;
       }
 
       .meta {
@@ -922,7 +997,7 @@
       }
 
       .hero-card {
-        padding: 20px;
+        padding: 18px;
       }
 
       .control-card,
